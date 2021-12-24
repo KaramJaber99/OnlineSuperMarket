@@ -1,0 +1,162 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Belleza');
+@import url('https://fonts.googleapis.com/css?family=Kavivanar');
+
+/* Variables Declarations */
+:root {
+    --font-primary: "Belleza";
+    --font-secondary: "Kavivanar";
+
+    --font-xxlarge: 3rem;
+    --font-xlarge: 2.8rem;
+    --font-large: 2rem;
+    --font-medium: 1.3rem;
+    --font-small: 1rem;
+    --font-xsmall: .8rem;
+
+    /* Color Scheme */
+    --light-green: #e4ebba;
+    --medium-green: #BDC881;
+    --dark-green: #487242;
+    --grey: #919191;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+}
+
+a {
+    margin: 10px;
+    text-align: center;
+    align-self: center;
+    color:rgb(10, 19, 6);
+    }
+    a>span {
+        font-weight: bolder; 
+    }
+
+button {
+    outline: none;
+    border: none;
+    background: none;
+    margin: .2rem 0;
+}
+.btn {
+    width: 100%;
+    padding: .2rem;
+    color: white;
+    border-radius: 0;
+    text-transform: uppercase;
+    background-color: var(--dark-green);
+}
+.btn-half {
+    width: 45% !important;
+}
+.btn-secondary {
+    border: none;
+    background-color: var(--medium-green);
+}
+.btn:not(:disabled):hover {
+    background-color: var(--medium-green);
+}
+.btn.btn-secondary:not(:disabled):hover {
+    background-color: var(--light-green);
+}
+
+.form-group {
+    margin-bottom: 10px;
+    }
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    .form-group p {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+.title {
+    font-weight: 900;
+    padding-bottom: 0;
+    letter-spacing: -1.5px;
+    color: var(--dark-green);
+    font-size: var(--font-xlarge);
+    font-family: var(--font-primary);
+    }
+    .title span{
+        color: var(--medium-green);
+        font-size: var(--font-medium);
+        font-family: 'Belleza';
+    }
+
+/********* Modals **********/
+.modal-header, .modal-body {
+    text-align: center;
+}
+
+/********* Scrollbar *******/
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* remove background from autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+  box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* hide arrows from number input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { /* Chrome, Safari, Edge, Opera */
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {   /* Firefox */
+  -moz-appearance: textfield;
+}
+
+@media only screen and (max-width: 800px) {
+    :root {
+        --font-xxlarge: 2.8rem;
+        --font-xlarge: 2.5rem;
+        --font-large: 1.6rem;
+        --font-medium: 1.2rem;
+        --font-small: .9rem;
+        --font-xsmall: .7rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    :root {
+        --font-xlarge: 2rem;
+        --font-large: 1.5rem;
+        --font-medium: 1rem;
+        --font-small: .6rem;
+        --font-xsmall: .5rem;
+    }
+}

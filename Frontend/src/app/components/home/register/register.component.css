@@ -1,0 +1,60 @@
+.register-container {
+    display: flex;
+    padding: .5rem;
+    position: relative;
+    flex-direction: column;
+}
+
+.form-buttons {
+    display: flex;
+    align-content: space-between;
+    justify-content: flex-end;
+}
+.register-container button {
+    margin: .2rem .3rem;
+}
+
+/********* Stepper ********/
+.stepper {
+    display: flex;
+    align-self: flex-end;
+}
+.stepper p {
+    color: var(--grey);
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-left: .2rem;
+}
+.stepper p span{
+    font-size: var(--font-medium);
+}
+.stepper p span.indicator{
+    color: var(--dark-green);
+    font-size: var(--font-medium);
+    text-shadow: 2px 2px 2px 2px var(--dark-green);
+}
+
+/********* Alert **********/
+.register-container .alert {
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    animation: show_slide 1s linear forwards;
+}
+@keyframes show_slide {
+    0% {
+        transform: translateY(-100%);
+    }
+    40%{
+        transform: translateY(15%);
+    }
+    80%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}

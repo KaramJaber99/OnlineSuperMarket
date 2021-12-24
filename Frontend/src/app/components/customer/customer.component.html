@@ -1,0 +1,44 @@
+<div class="customer-container">
+    <div *ngIf="!cartService.isInShoppingMode" class="checkout-section">
+        <app-checkout></app-checkout>
+    </div>
+
+    <div class="products-section"
+        [ngClass]="{ full: !cartService.isCartOpen, hidden: !cartService.isInShoppingMode}">
+        <app-products (productClickEvent)="onProductClick($event)"></app-products>
+    </div>
+
+    <div class="cart-section"
+        [ngClass]="{ hidden: !this.cartService.isCartOpen }">
+        <app-cart></app-cart>
+    </div>
+</div>
+
+<!-- Add product to cart - Modal -->
+<div class="container">
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayModal}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" (click)="onCloseModal()">&times;</button>
+                    <img src="{{selectedProduct.imageUrl}}" class="product-modal-img" />
+                    <h4 class="modal-title"><strong>{{selectedProduct.name}}</strong></h4>
+                    <h5>₪{{selectedProduct.unitPrice}}</h5>
+
+                    <div>
+                        <button (click)="subQuantity()"><i class="fas fa-minus"></i></button>
+                        <input type="number" [(ngModel)]="selectedProduct.quantity" min="1"/>
+                        <button (click)="addQuantity()"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button *ngIf="!isInCart" class="btn" (click)="addToCart()">Add to Cart</button>
+                    <button *ngIf="isInCart" class="btn" (click)="updateCart()">Update Cart</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

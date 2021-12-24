@@ -1,0 +1,104 @@
+/********* Cart Header *********/
+.cart-header {
+    top: 0;
+    height: clamp(95px,13%,160px);
+    position: sticky;
+    overflow-x: hidden;
+    text-align: center;
+    padding: .3rem 1.5rem;
+    background-color: var(--light-green);
+    border: 1px solid var(--medium-green);
+}
+.cart-header h2 {
+    font-weight: 600;
+    margin-bottom: 2px;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--medium-green);
+}
+.close-cart-btn {
+    top: .5rem;
+    left: .5rem;
+    font-weight: 900;
+    position: absolute;
+    text-transform: uppercase;
+}
+.empty-cart-btn {
+    width: 100%;
+    color: var(--dark-green);
+    background-color: var(--medium-green);
+}
+
+.search-box {
+    position: relative;
+}
+.search-box i {
+    top: 1px;
+    right: .5rem;
+    color: grey;
+    position: absolute;
+}
+.search-input {
+    width: 100%;
+    outline: none;
+    padding: 0 .5rem;
+    color: var(--dark-green);
+    border: var(--medium-green);
+    background-color: var(--medium-green);
+}
+
+/********* Cart Content *********/
+.cart-content {
+    height: 70%;
+    padding: .3rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    background-color: white;
+    border: 1px solid var(--medium-green);
+}
+.cart-content img {
+    width: 5rem;
+}
+.cart-content table {
+    width: 100%;
+}
+.cart-content td {
+    padding: .5rem;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.5);
+}
+.cart-content td.align-top {
+    vertical-align: top;
+}
+.cart-content td button {
+    padding: 0px 2px;
+    font-weight: 600;
+    color: var(--dark-green);
+    text-transform: uppercase;
+}
+
+/********** Cart Footer *********/
+.cart-footer {
+    bottom: 0;
+    width: 100%;
+    height: 17%;
+    padding: .5rem;
+    position: absolute;
+    border: 1px solid var(--medium-green);
+    background-color: var(--light-green);
+}
+.cart-footer h3 {
+    position: relative;
+}
+.cart-footer h3 span {
+    top: 4px;
+    right: 0;
+    position: absolute;
+    font-size: var(--font-medium);
+}
+
+/*********************/
+.highlighted {
+    font-weight: 600;
+    color: var(--dark-green);
+    background-color: #b4b4b362;
+}

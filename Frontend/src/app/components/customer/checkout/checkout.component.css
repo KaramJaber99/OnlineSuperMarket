@@ -1,0 +1,73 @@
+.checkout{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+/******* Header *******/
+.checkout-header {
+  width: 100%;
+  text-align: center;
+  background-color: var(--dark-green);
+}
+.checkout-header h2 {
+  color: white;
+  font-weight: 600;
+}
+
+/******** Content ********/
+.checkout-content {
+  width: clamp(300px, 60%, 450px);
+  height: 90%;
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  background-color: white;
+}
+
+h5 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: var(--medium-green);
+  font-family: var(--font-secondary);
+}
+h5:before, h5:after {
+    content: '';
+    flex: 1 0 20px;
+    margin: 0 20px 0 0;
+    border-top: 2px solid;
+    color: var(--medium-green)
+}
+h5:after {
+    margin: 0 0 0 20px;
+}
+
+.checkout-content .btn-full-main {
+  margin-top: 1rem;
+}
+
+/********** DatePicker Button *******/
+button.calendar, button.calendar:active{
+  width: 2.75rem;
+  background-image: url('../../../../assets/calendar.png') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
+ }
+.btn-outline-secondary {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: .375rem .75rem !important;
+  margin: 0 !important;
+}
+.btn-outline-secondary:hover {
+  background-color: var(--light-green);
+}

@@ -1,0 +1,43 @@
+<div class="login-container">
+
+    <h2 class="title">Welcome <span>sign in</span></h2>
+
+    <form #loginForm="ngForm" (submit)="login()">
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" required
+                id="email" name="email" class="form-control"
+                placeholder="Enter Email"
+                [(ngModel)]="userLoginDetails.email" 
+                [ngClass]="{ 'is-invalid': showAlert }"  
+            />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" required
+                id="password" name="password" class="form-control"
+                placeholder="Enter Password" 
+                [(ngModel)]="userLoginDetails.password" 
+                [ngClass]="{ 'is-invalid': showAlert }"    
+            />
+        </div>
+
+        <button type="submit" [disabled]="loginForm.form.invalid" class="btn">
+            Login
+        </button>
+    </form>
+
+    <a routerLink="/home/register">Don't Have an Account? <span>sign up</span></a>
+
+    <!-- Alert Modal -->
+    <div *ngIf="showAlert" class="alert alert-danger">
+        {{errorMessage}}
+        <button type="button" class="alrt-btn" (click)="showAlert = false">
+            <i class="far fa-times-circle"></i>
+        </button>
+    </div>
+</div>

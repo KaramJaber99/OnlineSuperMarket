@@ -1,0 +1,60 @@
+<div class="cart-header">
+    <!-- Close cart button -->
+    <button *ngIf="cartService.isInShoppingMode" 
+        class="close-cart-btn" (click)="onCloseCart()">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Back to shoppine mode -->
+    <button *ngIf="!cartService.isInShoppingMode" 
+        class="close-cart-btn" (click)="onBackToShop()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+
+    <h2>My Cart</h2>
+
+    <!-- Empty cart button -->
+    <button *ngIf="cartService.isInShoppingMode" class="empty-cart-btn"
+        (click)="onDeleteAllItems()">
+        Empty Cart
+    </button>
+
+    <!-- Search in cart -->
+    <span *ngIf="!cartService.isInShoppingMode" class="search-box">
+        <input class="search-input" 
+            [(ngModel)]="searchInput" 
+            placeholder=" Search Item in Cart"
+        />
+        <i class="fas fa-search"></i>
+    </span>
+</div>
+
+<!-- Products list -->
+<div class="cart-content">
+    <div *ngIf="cartService.cart.products?.size == 0">
+        <p>Your Cart is Currently Empty</p>
+    </div>
+
+    <table>
+        <tbody>
+            <tr *ngFor="let product of cartService.cart.products | keyvalue"
+                [ngClass]="{ highlighted: product.value.name | isHighlighted:searchInput }"
+            >
+                <td><img src="{{product.value.imageUrl}}"/></td>
+                <td>{{product.value.name}}</td>
+                <td>{{product.value.quantity}}x</td>
+                <td>₪{{product.value.price}}</td>
+                <td class="align-top">
+                    <button *ngIf="cartService.isInShoppingMode" 
+                        (click)="onDeleteItemFromCart(product.value)">X</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="cart-footer">
+    <h3>Total: <span>₪{{cartService.total}}</span></h3>
+    <button *ngIf="cartService.isInShoppingMode" class="btn"
+        (click)="onCheckout()" [disabled]="!cartService.cart.products?.size">Checkout</button>
+</div>

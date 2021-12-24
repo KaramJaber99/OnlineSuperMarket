@@ -1,0 +1,166 @@
+<div class="register-container">
+
+    <h2 class="title">Welcome <span>sign up</span></h2>
+
+    <!-- Step Indicator -->
+    <div class="stepper">
+        <p>STEP <span class="indicator">{{registrationStage}}</span> of <span>2</span></p>
+    </div>
+
+    <!-- First Step -->
+    <form [formGroup]="registerPartOneForm" *ngIf="registrationStage == 1" 
+        (submit)="next()">
+
+        <!-- User ID-->
+        <div class="form-group">
+            <label for="userId">ID</label>
+            <input [formControl]="id" type="text" autocomplete="off" 
+                id="userId" name="userId" class="form-control"
+                placeholder="Enter ID" 
+                [ngClass]="{ 'is-invalid': id.touched && id.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="id.touched && id.invalid">
+                <p *ngIf="id.errors?.required">ID is required</p>
+                <p *ngIf="id.errors?.pattern">User ID should be a 9 figure number</p>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input [formControl]="email" type="email" 
+                id="email" name="email" class="form-control"
+                placeholder="Enter Email" 
+                [ngClass]="{ 'is-invalid': email.touched && email.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="email.touched && email.invalid">
+                <p *ngIf="email.errors?.required">Email is required</p>
+                <p *ngIf="email.errors?.email">Invalid email</p>
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input [formControl]="password" type="password" 
+                id="password" name="password" class="form-control"
+                placeholder="Enter Password" 
+                [ngClass]="{ 'is-invalid': password.touched && password.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="password.touched && password.invalid">
+                <p *ngIf="password.errors?.required">Password is required</p>
+                <p *ngIf="password.errors?.pattern">
+                    Your password must be 8-20 characters long, contain letters or
+                    numbers, and must not contain spaces, special characters, or emoji.
+                </p>
+            </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+            <label for="validatePassword">Confirm Password</label>
+            <input [formControl]="confirmPassword" type="password" 
+                id="validatePassword" name="confirmPassword"
+                class="form-control" placeholder="Confirm Password"
+                [ngClass]="{ 'is-invalid': (confirmPassword.touched && confirmPassword.invalid)  || 
+                    ( confirmPassword.dirty && registerPartOneForm.errors?.mismatch) }" 
+            />
+            <div class="invalid-feedback"
+                *ngIf="confirmPassword.touched && confirmPassword.invalid">
+                <p *ngIf="confirmPassword.errors?.required">Confirm your password</p>
+            </div>
+            <div class="invalid-feedback" *ngIf="registerPartOneForm.errors?.mismatch">
+                <p>Passwords don't match</p>
+            </div>
+
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" [disabled]="registerPartOneForm.invalid" class="btn btn-half">Next</button>
+        </div> 
+    </form>
+
+    <!-- Second Step -->
+    <form #registerPartTwoForm="ngForm" *ngIf="registrationStage == 2" 
+        (submit)="register(registerPartTwoForm)">
+
+        <!-- City -->
+        <div class="form-group">
+            <label for="city">City</label>
+            <select #city="ngModel" required 
+                id="city" name="city" class="form-control" 
+                [(ngModel)]="userDetails.city"
+                [ngClass]="{ 'is-invalid': city.touched && city.invalid }"
+            >
+                <option [ngValue]="undefined" disabled>Select a City</option>
+                <option *ngFor="let city of cities" key="city">{{city}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="city.touched && city.invalid">
+                <p *ngIf="city.errors?.required">City is required</p>
+            </div>
+        </div>
+
+        <!-- Street -->
+        <div class="form-group">
+            <label for="street">Street</label>
+            <input #street="ngModel" type="text" required 
+                id="street" name="street" class="form-control"
+                placeholder="Enter Street" 
+                [(ngModel)]="userDetails.street"
+                [ngClass]="{ 'is-invalid': street.touched && street.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="street.touched && street.invalid">
+                <p *ngIf="street.errors?.required">Street is required</p>
+            </div>
+        </div>
+
+        <!-- First Name -->
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input #firstName="ngModel" type="text" required autocomplete="off" 
+                id="firstName" name="firstName" class="form-control" 
+                placeholder="Enter First Name" 
+                [(ngModel)]="userDetails.firstName"
+                [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="firstName.touched && firstName.invalid">
+                <p *ngIf="firstName.errors?.required">First Name is required</p>
+            </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input #lastName="ngModel" type="text" required autocomplete="off" 
+                id="lastName" name="lastName" class="form-control" 
+                placeholder="Enter Last Name" 
+                [(ngModel)]="userDetails.lastName"
+                [ngClass]="{ 'is-invalid': lastName.touched && lastName.invalid }" 
+            />
+            <div class="invalid-feedback" *ngIf="lastName.touched && lastName.invalid">
+                <p *ngIf="lastName.errors?.required">Last Name is required</p>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button type="button" (click)="back()" class="btn btn-secondary btn-half">
+                Back
+            </button>
+            <button type="submit" [disabled]="registerPartTwoForm.invalid" 
+                class="btn btn-half">
+                Register
+            </button>
+        </div>
+    </form>
+
+    <a routerLink="/home/login">Have an Account? <span>sign in</span></a>
+
+    <!-- Alert Modal -->
+    <div *ngIf="showAlert" class="alert alert-{{alertType}} ">
+        {{alertMessage}}
+        <button type="button" class="alrt-btn" (click)="onCloseAlert()">
+            <i class="far fa-times-circle"></i>
+        </button>
+    </div>
+
+</div>

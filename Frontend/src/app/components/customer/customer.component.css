@@ -1,0 +1,188 @@
+.customer-container {
+    display: flex;
+    height: clamp(500px, 100%, 100vh);
+}
+
+input[type=number]{
+    margin: .5rem;
+    padding: .2rem;
+    width: 3rem;
+    text-align: center;
+    border: solid 1px var(--grey);
+}
+
+/********** Products Container **********/
+.products-section {
+    overflow-x: hidden;
+    animation: slide-in-animation 1s forwards;
+}
+.products-section.full {
+    animation: expand-products-conatiner-animation 1s forwards;
+}
+.products-section:not(.full) {
+    animation: reduce-products-conatiner-animation 1s forwards;
+}
+.products-section.hidden {
+    animation: slide-out-animation 1.2s linear forwards;
+}
+
+/********** Products Animation ********/
+@keyframes expand-products-conatiner-animation {
+    from { width: 70%; }
+    to { width: 100%; }
+}
+@keyframes reduce-products-conatiner-animation {
+    from { width: 100%; }
+    to { width: 70%; }
+}
+@keyframes slide-out-animation {
+    from { width: 70%; }
+    to {width: 0%; }
+}
+
+/********** Cart Container **********/
+.cart-section {
+    width: 30%;
+    overflow: hidden;
+    position: relative;
+}
+.cart-section.hidden {
+    animation: close-cart-animation 1.5s forwards;
+}
+.cart-section:not(.hidden){
+    animation: open-cart-animation 1s  forwards;
+}
+
+/********** Cart Animation *********/
+@keyframes close-cart-animation {
+    from { width: 30%; }
+    to { width: 0; }
+}
+@keyframes open-cart-animation {
+    from { width: 0; }
+    to { width: 30%; }
+}
+
+/********* Checkout Container ********/
+.checkout-section {
+    width: 70%;
+    overflow-x: hidden;
+    border: solid 1px var(--dark-green);
+    animation: slide-in-animation 1s linear;
+}
+
+/********** Checkout Animation **********/
+@keyframes slide-in-animation {
+    from { width: 0%; }
+    to {width: 70%; }
+}
+
+/******* Modal ********/
+.product-modal-img {
+    width: 10rem;
+    height: 10rem;
+}
+
+@media only screen and (max-width: 1010px) {
+    .products-section,.checkout-section {
+        width: 60%;
+    }
+    .cart-section{
+        width: 40%;
+    }
+    @keyframes slide-in-animation {
+        from { width: 0%; }
+        to {width: 60%; }
+    }
+    @keyframes close-cart-animation {
+        from { width: 40%; }
+        to { width: 0; }
+    }
+    @keyframes open-cart-animation {
+        from { width: 0; }
+        to { width: 40%; }
+    }
+    @keyframes expand-products-conatiner-animation {
+        from { width: 60%; }
+        to { width: 100%; }
+    }
+    @keyframes reduce-products-conatiner-animation {
+        from { width: 100%; }
+        to { width: 60%; }
+    }
+    @keyframes slide-out-animation {
+        from { width: 60%; }
+        to {width: 0%; }
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .products-section,.checkout-section {
+        width: 100%;
+    }
+    .cart-section{
+        width: 0%;
+    }
+    @keyframes slide-in-animation {
+        from { width: 0%; }
+        to {width: 100%; }
+    }
+    @keyframes close-cart-animation {
+        from { width: 100%; }
+        to { width: 0; }
+    }
+    @keyframes open-cart-animation {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    @keyframes expand-products-conatiner-animation {
+        from { width: 0%; }
+        to { width: 100%; }
+    }
+    @keyframes reduce-products-conatiner-animation {
+        from { width: 100%; }
+        to { width: 0%; }
+    }
+    @keyframes slide-out-animation {
+        from { width: 100%; }
+        to {width: 0%; }
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .customer-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .products-section {
+        display: none;
+        animation: none;
+        overflow-x: hidden;
+    }
+    .products-section.full {
+        display: block;
+        animation: none;
+    }
+    .products-section:not(.full) {
+        animation: none;
+    }
+    .products-section.hidden {
+        animation: none;
+    }
+    .cart-section {
+        width: 100%;
+        height: clamp(500px, 100%, 100vh);
+    }
+    .cart-section.hidden {
+        animation: none;
+        display: none;
+    }
+    .cart-section:not(.hidden){
+        display: block;
+        animation: none;
+    }
+    .checkout-section {
+        animation: none;
+        height: clamp(500px, 100%, 100vh);
+    }
+}

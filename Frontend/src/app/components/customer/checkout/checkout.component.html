@@ -1,0 +1,127 @@
+<div class="checkout">
+    <div class="checkout-header">
+        <h2>Checkout</h2>
+    </div>
+
+    <div class="checkout-content">
+        <form [formGroup]="checkoutForm" (submit)="onPurchase()">
+            <h5>Shipping</h5>
+
+            <!-- City -->
+            <div class="form-group">
+                <label for="city">City</label>
+                <select [formControl]="city"
+                    id="city" name="city" class="form-control" 
+                    (dblclick)="onDblCity()"  
+                    ngbTooltip="Double click for auto fill" placement="right"
+                    [ngClass] = "{ 'is-invalid': city.touched && city.invalid }"
+                >
+                    <option value="" disabled>Select a City</option>
+                    <option *ngFor="let city of cities" key="city">{{city}}</option>
+                </select>
+
+                <div class="invalid-feedback" *ngIf="city.touched && city.invalid">
+                    <p *ngIf="city.errors.required">City is required</p>
+                </div>
+            </div>
+
+            <!-- Street -->
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input [formControl]="street" type="text"
+                    id="street" name="street" class="form-control"   
+                    placeholder="Enter Street"
+                    (dblclick)="onDblStreet()"  
+                    ngbTooltip="Double click for auto fill" placement="right" 
+                    [ngClass] = "{ 'is-invalid': street.touched && street.invalid }"
+                />
+                <div class="invalid-feedback" *ngIf="street.touched && street.invalid">
+                    <p *ngIf="street.errors.required">Street is required</p>
+                </div>
+            </div>
+
+            <!-- Delivery Date-->
+            <div class="form-group">
+                <label for="deliveryDate">Delivery Date</label>
+                <div class="input-group">
+                    <input [formControl]="deliveryDate"
+                      ngbDatepicker #d="ngbDatepicker" autocomplete="off"
+                      id="deliveryDate" name="deliveryDate" 
+                      class="form-control" placeholder="yyyy-mm-dd" 
+                      firstDayOfWeek="7" outsideDays="collapsed"
+                      placement="top" navigation="arrows"
+                      [minDate]="minDate" 
+                      [maxDate]="maxDate"
+                      [markDisabled]="isDisabled"
+                      [ngClass] = "{ 'is-invalid': deliveryDate.touched && 
+                        deliveryDate.invalid }" 
+                    />
+                    <span class="input-group-append">
+                      <button class="btn-outline-secondary calendar"
+                          (click)="d.toggle()" type="button"></button>
+                    </span>
+                    
+                    <div class="invalid-feedback" 
+                        *ngIf="(deliveryDate.touched || deliveryDate.dirty) && deliveryDate.invalid">
+                        <p *ngIf="deliveryDate.errors.required">Delivery date is required</p>
+                        <p *ngIf="deliveryDate.errors.ngbDate?.maxDate">We make deliveries up to two months in advance</p>
+                        <p *ngIf="deliveryDate.errors.ngbDate?.minDate">This date has past</p>
+                        <p *ngIf="deliveryDate.errors.ngbDate?.invalid">Date must be a valid date (Ex: yyyy-mm-dd)</p>
+                        <p *ngIf="deliveryDate.hasError('unavailableDate')">This date is unavailable for deliverys</p>
+                        <p *ngIf="deliveryDate.hasError('weekend')">There are no deliveries on Saturday</p>
+                    </div>
+                </div>
+            </div>
+
+            <h5>Payment</h5>
+
+            <!-- Credit Card -->
+            <div class="form-group">
+                <label for="creditCard">Credit Card</label>
+                <input [formControl]="creditCard" type="text" autocomplete="off"
+                    id="creditCard" name="creditCard" class="form-control"
+                    placeholder="Enter Credit Card Number"   
+                    [ngClass]="{ 'is-invalid': creditCard.touched && creditCard.invalid }"   
+                />
+                <div class="invalid-feedback" 
+                    *ngIf="creditCard.touched && creditCard.invalid"
+                >
+                    <p *ngIf="creditCard.errors.required">Credit Card is required</p>
+                    <p *ngIf="creditCard.errors.pattern">Invalid Credit Card</p>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="checkoutForm.invalid" class="btn" 
+                >Purchase</button>
+        </form>
+    </div>
+</div>
+
+<!-- Successful Order Modal-->
+<div class="container">
+    <div class="modal" tabindex="-1" id="purchaseModal" role="dialog" [ngStyle]="{'display': displayModal}">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Order Completed!</h4>
+                    <button type="button" class="close" data-dismiss="modal" 
+                        (click)="onCloseModal()">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h6>Download invoice 
+                        <a download="invoice - {{this.orderDetails.id}}.txt" 
+                            [href]="invoiceUrl">HERE</a>
+                    </h6>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="button" value="OK" class="btn btn-primary" data-dismiss="modal" 
+                        (click)="onCloseModal()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

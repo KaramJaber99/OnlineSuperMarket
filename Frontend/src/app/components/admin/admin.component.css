@@ -1,0 +1,35 @@
+.admin-container {
+    display: flex;
+    height: clamp(400px, 100%, 100vh);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.products-section {
+    width: 70%;
+    overflow-x: hidden;
+}
+
+.mangement-section {
+    width: 30%;
+    overflow-x: hidden;
+    border: solid 2px var(--medium-green);
+}
+
+@media only screen and (max-width: 1100px) {
+    .products-section {
+        width: 60%;
+    }
+    .mangement-section{
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .products-section {
+        width: 50%;
+    }
+    .mangement-section{
+        width: 50%;
+    }
+}

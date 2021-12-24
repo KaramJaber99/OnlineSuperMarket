@@ -1,0 +1,17 @@
+<div class="category-menu">
+    <button *ngFor="let category of categories" 
+        value="category.name" name="category"
+        (click)="getProducts(category.id)"
+        [ngClass]="{ selected: category.id == categoriesService.currentCategoryId }">
+        {{category.name}}
+    </button>
+</div>
+
+<div class="products">
+    <app-product *ngFor="let product of productsService.products" 
+        [product]="product" (click)="showProduct(product)">
+    </app-product>
+
+    <h4 *ngIf="productsService.products.length == 0">No Products Found</h4>
+    
+</div>

@@ -1,0 +1,9 @@
+<div class="product-card"
+    [ngClass]="{ selected: product.id == productsService.selectedProduct.id }">
+    <img src="{{product.imageUrl}}" alt="{{product.name}}" />
+    <div class="content">
+        <h4>{{product.name}}</h4>
+        <h5>₪ {{product.unitPrice}}</h5>
+    </div>
+</div>
+

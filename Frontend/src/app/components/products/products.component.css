@@ -1,0 +1,31 @@
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.category-menu {
+    top: 0;
+    display: flex;
+    position: sticky;
+    overflow-x: auto;
+    justify-content: space-between;
+    background-color: var(--dark-green); 
+}
+
+.category-menu button {
+    padding: .6rem;
+    color: white;
+    width: 10rem;
+    margin: 0;
+}
+.category-menu button:hover {
+    background: var(--medium-green);
+    color: white;
+}
+.category-menu button.selected {
+    background: var(--medium-green);
+    color: white;
+}
+

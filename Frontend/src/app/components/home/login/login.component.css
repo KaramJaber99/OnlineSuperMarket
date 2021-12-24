@@ -1,0 +1,30 @@
+.login-container {
+    padding: .5rem;
+    position: relative;
+    align-self: center;
+}
+
+/********* Alert **********/
+.login-container .alert {
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    animation: show_slide 1s linear forwards;
+}
+@keyframes show_slide {
+    0% {
+        transform: translateY(-100%);
+    }
+    40%{
+        transform: translateY(15%);
+    }
+    80%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}

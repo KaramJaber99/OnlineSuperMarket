@@ -1,0 +1,57 @@
+<div class="header-content">
+
+    <!-- Logo -->
+    <img class="logo-img" src="../../../assets/Online Supermarket.png" />
+
+    <div class="right">
+
+        <!-- Loggedin User Details-->
+        <div>
+            <p>
+                <i class="fal fa-user"></i>
+                <span *ngIf="!usersService.loggedInUser.userName ">
+                    Hello, Stranger
+                </span>
+
+                <span *ngIf="usersService.loggedInUser.userName ">
+                    Hello, {{ usersService.loggedInUser.userName }}
+                    <Button (click)="onLogout()">(Logout)</Button>
+                </span>
+                
+            </p>
+        </div>
+
+        <!-- Functionality -->
+        <div class="functionality" 
+            *ngIf="usersService.loggedInUser.token && cartService.isInShoppingMode">
+
+            <!-- Search Box -->
+            <form (submit)="onSearchProducts()">
+                <div class="search-box">
+                    <input type="text" [(ngModel)]="searchTerm" class="search-input"
+                        placeholder="Search Item..." name="searchTerm" autocomplete="off"
+                    />
+                    <button type="submit" class="search-box-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <button *ngIf="usersService.loggedInUser.userType == 'CUSTOMER'"
+                class="cart-btn" (click)="onCartToggle()">
+                <i class="fal fa-shopping-cart">
+                    <span class="cart-badge">{{cartService.cart.products?.size}}</span>
+                </i>
+            </button>
+        </div>
+
+        <!-- Contact Information-->
+        <div class="contact-info">
+            <p>
+                Contact us
+                <i class="fal fa-phone-alt"></i> (+972) 972-972-972 |
+                <i class="fal fa-envelope"></i> super@market.com
+            </p>
+        </div>
+    </div>
+</div>
